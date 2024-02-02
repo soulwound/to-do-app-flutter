@@ -3,9 +3,16 @@ import '/constants/color_constants.dart';
 import 'package:to_do_app/model/todo.dart';
 
 class ToDoItem extends StatelessWidget {
-  const ToDoItem({Key? key, required this.todo}) : super(key: key);
+  const ToDoItem({
+    Key? key,
+    required this.todo,
+    required this.onToDoChanged,
+    required this.onToDoDeleted
+  }) : super(key: key);
 
   final ToDo todo;
+  final onToDoChanged;
+  final onToDoDeleted;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +20,7 @@ class ToDoItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 15),
       child: ListTile(
         onTap: (){
-          print("You just tapped");
+          onToDoChanged(todo);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         tileColor: tdLightPink,
@@ -41,7 +48,7 @@ class ToDoItem extends StatelessWidget {
             iconSize: 20,
             icon: const Icon(Icons.delete_forever),
             onPressed:  () {
-              print("it cant delete anything for now");
+              onToDoDeleted(todo.id);
             }
           ),
         ),
