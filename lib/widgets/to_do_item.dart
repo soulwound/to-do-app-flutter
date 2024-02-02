@@ -1,36 +1,51 @@
 import 'package:flutter/material.dart';
 import '/constants/color_constants.dart';
+import 'package:to_do_app/model/todo.dart';
 
 class ToDoItem extends StatelessWidget {
-  const ToDoItem({Key? key}) : super(key: key);
+  const ToDoItem({Key? key, required this.todo}) : super(key: key);
+
+  final ToDo todo;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: (){
-        print("You just tapped");
-      },
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      tileColor: tdLightPink,
-      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      leading: Icon(Icons.check_box, color: tdNewYorkPink,),
-      title: Text("ToDo task", style: TextStyle(fontSize: 18, decoration: TextDecoration.lineThrough),),
-      trailing: Container(
-        height: 35,
-        width: 35,
-        decoration: BoxDecoration(
-          color: tdRed,
-          borderRadius: BorderRadius.circular(5),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 15),
+      child: ListTile(
+        onTap: (){
+          print("You just tapped");
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        tileColor: tdLightPink,
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        leading: Icon(
+          todo.isDone? Icons.check_box_outlined : Icons.check_box_outline_blank_outlined,
+          color: tdDarkPurple,
         ),
-        child: IconButton(
-          color: tdWhite,
-          iconSize: 20,
-          icon: Icon(Icons.delete_forever),
-          onPressed:  () {
-            print("it cant delete anything for now");
-          }
+        title: Text(
+          todo.toDoText!,
+          style: TextStyle(
+              fontSize: 18,
+              decoration: todo.isDone? TextDecoration.lineThrough : null
+          ),
         ),
-      ),
+        trailing: Container(
+          height: 35,
+          width: 35,
+          decoration: BoxDecoration(
+            color: tdRed,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: IconButton(
+            color: tdWhite,
+            iconSize: 20,
+            icon: const Icon(Icons.delete_forever),
+            onPressed:  () {
+              print("it cant delete anything for now");
+            }
+          ),
+        ),
+      )
     );
   }
   

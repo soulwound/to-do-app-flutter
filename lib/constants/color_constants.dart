@@ -8,3 +8,4 @@ const Color tdFalcon = Color(0xFF735668);
 const Color tdWhite = Color(0xFFF8E5F0);
 const Color tdLightPink = Color(0xFFE5B7D1);
 const Color tdRed = Color(0xFF9D0029);
+const Color tdDarkPurple = Color(0xFF2F1A46);
