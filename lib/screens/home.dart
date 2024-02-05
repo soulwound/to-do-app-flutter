@@ -162,7 +162,7 @@ class _HomeState extends State<Home> {
       backgroundColor: tdFalcon,
       title: const Center(
           child: Text(
-            "My ToDo App", style: TextStyle(
+            "Тудушечка", style: TextStyle(
               color: tdWhite
             ),
           )
