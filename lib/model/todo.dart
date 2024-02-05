@@ -1,3 +1,5 @@
+import 'package:to_do_app/main.dart';
+
 class ToDo {
   String? id;
   String? toDoText;
@@ -5,13 +7,24 @@ class ToDo {
 
   ToDo({required this.id, required this.toDoText, this.isDone = false});
 
-  static List<ToDo> toDoList() {
-    return [
-      ToDo(id: "01", toDoText: "Проверить почту", isDone: true),
-      ToDo(id: "02", toDoText: "Подготовка к экзамену"),
-      ToDo(id: "03", toDoText: "Сходить в магазин"),
-      ToDo(id: "04", toDoText: "Выгулять собаку"),
-      ToDo(id: "05", toDoText: "Сделать ToDo App")
-    ];
+
+  static Future<List<ToDo>> toDoList() async{
+    return todos();
   }
+
+
+
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': int.parse(id!),
+      'name': toDoText,
+      'isDone': isDone?1:0,
+    };
+  }
+@override
+  String toString() {
+    return 'ToDo{id: $id, name: $toDoText, isDone: $isDone}';
+  }
+
 }
